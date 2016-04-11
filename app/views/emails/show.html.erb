@@ -6,17 +6,34 @@
       <button type="button" class="btn btn-default" id="tree-btn">Tree</button>
       <button type="button" class="btn btn-default" id="cloud-btn">Cloud</button>
     </div>
-    <p>there are <%= @responses.count %> responses for this email</p>
+    <p>there are <%= @responses.count %> responses for <%= @email.email %></p>
   </div>
 </div>
 
 <script type="text/javascript">
   window.rawdata = [<%= raw @responses.map{ |r| sanitize r.content.downcase.gsub(/[^a-z0-9\s]/i, '') }.to_json %>];
-  window.top_words = <%= raw top_words(@responses).to_json %>
+  window.top_words = <%= raw top_words(@responses).to_json %>;
   google.charts.setOnLoadCallback(drawChart);
-  document.getElementById("tree-btn").onclick = loadTree
-  document.getElementById("cloud-btn").onclick = loadCloud(window.top_words)
 </script>
 
-
 <div id="vis_div" style="width: 100%; height: 500px;"></div>
+
+<div id="tree-root-control" class="controls">
+  <div class="col">
+    <div class="input-group">
+      <input id="root-word" class="form-control" type="text" name="inpWord" placeholder="Define the tree's root here">
+      <span class="input-group-btn">
+        <button id="root-button" class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div>
+  </div>
+</div>
+
+<script>
+  $("#cloud-btn").click( function() {
+    loadCloud(window.top_words);
+  });
+  $("#tree-btn").click( function() {
+    loadTree();
+  });
+</script>

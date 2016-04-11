@@ -10,8 +10,9 @@ class EmailsController < ApplicationController
   # GET /emails/1
   # GET /emails/1.json
   def show
+    @email = Email.find(params[:id])
     @emails = Email.all
-    @responses = Email.find(params[:id]).responses
+    @responses = @email.responses
   end
 
   # GET /emails/new

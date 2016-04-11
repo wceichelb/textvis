@@ -14,14 +14,17 @@ function drawChart(inpWord='') {
   chart.draw(data, options);
 }
 
-function loadTree(word=nil) {
+function loadTree(word='') {
   $("#vis_div").html("");
+  $("#tree-root-control").show();
 
   drawChart(word);
 }
 
 function loadCloud(word_array) {
   $("#vis_div").html("");
+  $("#tree-root-control").hide();
 
   $("#vis_div").jQCloud(word_array);
 }
+
