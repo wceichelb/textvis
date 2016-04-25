@@ -1,8 +1,6 @@
-// google.charts.setOnLoadCallback(drawChart);
-
 function drawChart(inpWord='') {
-  var data = google.visualization.arrayToDataTable(_.zip.apply(_, window.rawdata));
-
+  console.log(inpWord);
+  var data = google.visualization.arrayToDataTable(_.zip.apply(_, rawdata));
   var options = {
     wordtree: {
       format: 'implicit',

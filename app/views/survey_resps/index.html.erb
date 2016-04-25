@@ -1,18 +1,19 @@
 <p id="notice"><%= notice %></p>
 
+
 <div class="row">
   <div class="container-fluid" style="text-align:center;">
     <div class="btn-group" role="group">
       <button type="button" class="btn btn-default" id="tree-btn">Tree</button>
       <button type="button" class="btn btn-default" id="cloud-btn">Cloud</button>
     </div>
-    <p>there are <%= @responses.count %> responses for <%= @email.email %></p>
+    <p><%= @resps.count %> responses of this type in the db</p>
   </div>
 </div>
 
 <script type="text/javascript">
-  window.rawdata = [<%= raw @responses.map{ |r| sanitize r.content.downcase.gsub(/[^a-z0-9\s]/i, '') }.to_json %>];
-  window.top_words = <%= raw top_words(@responses).to_json %>;
+  window.rawdata = [<%= raw @resps.map{ |r| sanitize r.content.downcase.gsub(/[^a-z0-9\s]/i, '') }.to_json %>];
+  window.top_words = <%= raw top_words_resps(@resps).to_json %>;
   // google.charts.setOnLoadCallback(drawChart);
 </script>
 
@@ -21,7 +22,7 @@
 <div id="tree-root-control" class="controls">
   <div class="col">
     <div class="input-group">
-      <input id="root-word" class="form-control message" type="text" name="inpWord" placeholder="Define the tree's root here">
+      <input id="root-word" class="form-control" type="text" name="inpWord" placeholder="Define the tree's root here">
       <span class="input-group-btn">
         <button id="root-button" class="btn btn-default" type="button">Go!</button>
       </span>

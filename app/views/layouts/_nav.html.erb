@@ -12,6 +12,14 @@
             <% end %>
           </ul>
         </li>
+        <li class="btn-group">
+          <%= link_to "Other", survey_resps_path, class: "dropdown-toggle", data: { toggle: "dropdown" }, html_options: {role: "button"} %>
+          <ul class="dropdown-menu" role="menu">
+            <% resp_type_enum.each do |question| %>
+              <%= link_to "#{question}", survey_resps_path(question: question) %>
+            <% end %>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331162338) do
+ActiveRecord::Schema.define(version: 20160415152425) do
 
   create_table "emails", force: :cascade do |t|
     t.string "email"
@@ -24,5 +24,12 @@ ActiveRecord::Schema.define(version: 20160331162338) do
   end
 
   add_index "responses", ["email_id"], name: "index_responses_on_email_id"
+
+  create_table "survey_resps", force: :cascade do |t|
+    t.string   "question"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
