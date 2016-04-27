@@ -23,8 +23,12 @@
     <div class="input-group">
       <input id="root-word" class="form-control message" type="text" name="inpWord" placeholder="Define the tree's root here">
       <span class="input-group-btn">
-        <button id="root-button" class="btn btn-default" type="button">Go!</button>
+        <button type="button" class="btn btn-default" id="tree-suffix-btn">Suffix</button>
+        <button type="button" class="btn btn-default" id="tree-prefix-btn">Prefix</button>
+        <button type="button" class="btn btn-default" id="tree-double-btn">Double</button>
       </span>
+    </div>
+    <div class="btn-group" role="group">
     </div>
   </div>
 </div>
@@ -33,6 +37,11 @@
   <% word = params[:inpWord] %>
   $(document).ready( function() {
     drawChart('<%= params[:inpWord].to_s %>');
+    // test = "<%= params[:inpWord].to_s %>";
+    // console.log(test);
+    // if ("<%= params[:inpWord].to_s %>") {
+    //   $("#root-word").value="<%= params[:inpWord] %>";
+    // }
   });
   $("#cloud-btn").click( function() {
     loadCloud(window.top_words);
@@ -40,8 +49,20 @@
   $("#tree-btn").click( function() {
     loadTree();
   });
-  $("#root-button").click( function() {
+  // $("#root-button").click( function() {
+  //   var inpWord = document.getElementById("root-word").value;
+  //   loadTree(inpWord);
+  // });
+  $("#tree-prefix-btn").click( function() {
     var inpWord = document.getElementById("root-word").value;
-    loadTree(inpWord);
+    loadTree(inpWord, 'prefix');
+  });
+  $("#tree-suffix-btn").click( function() {
+    var inpWord = document.getElementById("root-word").value;
+    loadTree(inpWord, 'suffix');
+  });
+  $("#tree-double-btn").click( function() {
+    var inpWord = document.getElementById("root-word").value;
+    loadTree(inpWord, 'double');
   });
 </script>
